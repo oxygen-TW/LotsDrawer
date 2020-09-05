@@ -14,3 +14,12 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## ToDo
+- [] Home page 排版優化
+- [] Home page 程式碼重構並使用 Random Core
+- [] 實作 RandomCore 功能
+- [] 測試 RandomCore 功能
+- [] Home page 單元測試
+- [] Settings page 單元測試
+- [] 整合測試

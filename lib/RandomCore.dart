@@ -15,23 +15,25 @@ class RandomCore{
     this.startNum = start;
     this.endNum = end + 1;
     this.rd = new Random();
+    this.numList = new List<int>.generate((this.endNum - this.startNum + 1), (i) => i + startNum);
   }
 
   void listShuffle(){
-    globals.numberList.shuffle();
+    this.numList.shuffle();
   }
 
-  void initNumberList(){
-    //globals.numberList = {16 => }
+  List<int> random() {
+    var index = this.numList.length - 1;
+    var returnList = <int>[];
+
+    for(int i=0; i<globals.multiNum;i++){
+      returnList.add(this.numList[index]);
+      this.numList.removeAt(index);
+    }
+    return returnList;
   }
 
-  int random() {
-    print("$this.startNum $this.endNum");
-    do {
-      this._randomNum = rd.nextInt(this.endNum - this.startNum) + this.startNum;
-      print("$num");
-    }while(numList.contains(num) && globals.requireUnique);
-    return this._randomNum;
-  }
+  void reset(){
 
+  }
 }

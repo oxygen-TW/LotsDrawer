@@ -37,24 +37,20 @@ class HomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<HomePage> {
   int _randomNum = 0;
-  var numList = <int>[];
+  var randomNumList = <int>[];
   TextEditingController _start = TextEditingController();
   TextEditingController _end = TextEditingController();
 
   //RandomCore rdc = new RandomCore(int.parse(_start.text), end)
   Random random = new Random();
 
-  int _randomNumber() {
+  void _randomNumber() {
     int s = int.parse(_start.text);
-    int e = int.parse(_end.text) + 1;
-    int num = 0;
+    int e = int.parse(_end.text);
+    var rdc = RandomCore(s, e);
 
     print("$s $e");
-    do {
-      num = random.nextInt(e - s) + s;
-      print("$num");
-    } while (numList.contains(num) && globals.requireUnique);
-    return num;
+    randomNumList = rdc.random();
   }
 
   bool _checkNum() {
@@ -90,24 +86,11 @@ class _MyHomePageState extends State<HomePage> {
       _start.text = tmp;
     }
 
-    if ((int.parse(_end.text) + 1) - int.parse(_start.text) == numList.length &&
-        globals.requireUnique) {
-      Fluttertoast.showToast(
-          msg: "All number have been selected!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.blueGrey,
-          textColor: Colors.white,
-          fontSize: 16.0);
-      return false;
-    }
-
     return true;
   }
 
   void _resetApp() {
-    numList.clear();
+    randomNumList.clear();
     _start.text = "";
     _end.text = "";
     setState(() {
@@ -126,14 +109,25 @@ class _MyHomePageState extends State<HomePage> {
   String _getNumberList() {
     String str = "已抽中：\n";
     if (globals.requireSort) {
-      numList.sort();
+      randomNumList.sort();
     }
 
-    for (int i = 0; i < numList.length; i++) {
-      str += numList[i].toString() + ", ";
+    for (int i = 0; i < randomNumList.length; i++) {
+      str += randomNumList[i].toString() + ", ";
     }
     return str;
   }
+
+  String _getRoundList(){
+    String returnStr = "";
+    for (int i = 0; i < randomNumList.length - 1; i++) {
+      var num = randomNumList[i];
+      returnStr += "$num, ";
+    }
+    returnStr += randomNumList[randomNumList.length-1].toString();
+    return returnStr;
+    }
+
 
   @override
   Widget build(BuildContext context) {
@@ -146,18 +140,6 @@ class _MyHomePageState extends State<HomePage> {
       drawer: new Drawer(
         child: new ListView(
           children: <Widget>[
-            // Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children:[ Text(
-            //       "Lots Drawer",
-            //       style: TextStyle(
-            //           fontSize: 22.0, fontWeight: FontWeight.bold),
-            //     )
-            // ]),
-            // Divider(
-            //   height: 2.0,
-            //   color: Colors.grey,
-            // ),
             FlatButton(
                 onPressed: () {
                   Navigator.push(
@@ -210,7 +192,7 @@ class _MyHomePageState extends State<HomePage> {
                     Expanded(
                       child: TextField(
                         onChanged: (tmp) {
-                          numList.clear();
+                          randomNumList.clear();
                         },
                         scrollPadding: const EdgeInsets.symmetric(
                             horizontal: 16),
@@ -223,7 +205,7 @@ class _MyHomePageState extends State<HomePage> {
                     Expanded(
                         child: TextField(
                           onChanged: (tmp) {
-                            numList.clear();
+                            randomNumList.clear();
                           },
                           controller: _end,
                           keyboardType: TextInputType.numberWithOptions(
@@ -242,9 +224,7 @@ class _MyHomePageState extends State<HomePage> {
                         onPressed: () {
                           int num = 0;
                           if (_checkNum()) {
-                            num = _randomNumber();
-                            numList.add(num); //存入陣列
-
+                            _randomNumber();
                             setState(() {
                               _randomNum = num;
                             });

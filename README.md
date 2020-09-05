@@ -16,10 +16,11 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ## ToDo
-- [] Home page 排版優化
-- [] Home page 程式碼重構並使用 Random Core
-- [] 實作 RandomCore 功能
-- [] 測試 RandomCore 功能
-- [] Home page 單元測試
-- [] Settings page 單元測試
-- [] 整合測試
+
+- [ ] Home page 排版優化    
+- [ ] Home page 程式碼重構並使用 Random Core    
+- [ ] 實作 RandomCore 功能    
+- [ ] 測試 RandomCore 功能    
+- [ ] Home page 單元測試    
+- [ ] Settings page 單元測試    
+- [ ] 整合測試    

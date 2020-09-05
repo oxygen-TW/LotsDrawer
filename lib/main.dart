@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:fluttertoast/fluttertoast.dart';
+import "settingUI.dart";
+import 'RandomCore.dart';
+import 'globals.dart' as globals;
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(AppMainUI());
 
-class MyApp extends StatelessWidget {
+class AppMainUI extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -16,13 +17,17 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Draw lots App'),
+      routes: <String, WidgetBuilder>{
+        Navigator.defaultRouteName: (context) =>
+            HomePage(title: 'Draw lots App'),
+        //SettingUI.routeName: (context) => SettingUI(),
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -30,15 +35,14 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<HomePage> {
   int _randomNum = 0;
   var numList = <int>[];
   TextEditingController _start = TextEditingController();
   TextEditingController _end = TextEditingController();
 
+  //RandomCore rdc = new RandomCore(int.parse(_start.text), end)
   Random random = new Random();
-  bool _isSort = true;
-  bool _isUnique = true;
 
   int _randomNumber() {
     int s = int.parse(_start.text);
@@ -49,12 +53,14 @@ class _MyHomePageState extends State<MyHomePage> {
     do {
       num = random.nextInt(e - s) + s;
       print("$num");
-    }while(numList.contains(num) && _isUnique);
+    } while (numList.contains(num) && globals.requireUnique);
     return num;
   }
 
-  bool _checkNum(){
-    if(_start.text == "" || int.parse(_start.text) < 0 || int.parse(_start.text) > 10000){
+  bool _checkNum() {
+    if (_start.text == "" ||
+        int.parse(_start.text) < 0 ||
+        int.parse(_start.text) > 10000) {
       Fluttertoast.showToast(
           msg: "valid number is between 0 to 10000",
           toastLength: Toast.LENGTH_SHORT,
@@ -62,11 +68,12 @@ class _MyHomePageState extends State<MyHomePage> {
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.red,
           textColor: Colors.white,
-          fontSize: 16.0
-      );
+          fontSize: 16.0);
       return false;
     }
-    if(_end.text == "" || int.parse(_end.text) < 0 || int.parse(_end.text) > 10000){
+    if (_end.text == "" ||
+        int.parse(_end.text) < 0 ||
+        int.parse(_end.text) > 10000) {
       Fluttertoast.showToast(
           msg: "valid number is between 0 to 10000",
           toastLength: Toast.LENGTH_SHORT,
@@ -74,17 +81,17 @@ class _MyHomePageState extends State<MyHomePage> {
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.red,
           textColor: Colors.white,
-          fontSize: 16.0
-      );
+          fontSize: 16.0);
       return false;
     }
-    if(int.parse(_end.text) < int.parse(_start.text)){
+    if (int.parse(_end.text) < int.parse(_start.text)) {
       String tmp = _end.text;
       _end.text = _start.text;
       _start.text = tmp;
     }
 
-    if((int.parse(_end.text) + 1) - int.parse(_start.text) == numList.length && _isUnique){
+    if ((int.parse(_end.text) + 1) - int.parse(_start.text) == numList.length &&
+        globals.requireUnique) {
       Fluttertoast.showToast(
           msg: "All number have been selected!",
           toastLength: Toast.LENGTH_SHORT,
@@ -92,14 +99,14 @@ class _MyHomePageState extends State<MyHomePage> {
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.blueGrey,
           textColor: Colors.white,
-          fontSize: 16.0
-      );
+          fontSize: 16.0);
       return false;
     }
 
     return true;
   }
-  void _resetApp(){
+
+  void _resetApp() {
     numList.clear();
     _start.text = "";
     _end.text = "";
@@ -113,17 +120,16 @@ class _MyHomePageState extends State<MyHomePage> {
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.blueGrey,
         textColor: Colors.white,
-        fontSize: 16.0
-    );
+        fontSize: 16.0);
   }
 
-  String _getNumberList(){
+  String _getNumberList() {
     String str = "已抽中：\n";
-    if(_isSort){
+    if (globals.requireSort) {
       numList.sort();
     }
 
-    for(int i=0; i<numList.length;i++){
+    for (int i = 0; i < numList.length; i++) {
       str += numList[i].toString() + ", ";
     }
     return str;
@@ -137,68 +143,105 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            // Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children:[ Text(
+            //       "Lots Drawer",
+            //       style: TextStyle(
+            //           fontSize: 22.0, fontWeight: FontWeight.bold),
+            //     )
+            // ]),
+            // Divider(
+            //   height: 2.0,
+            //   color: Colors.grey,
+            // ),
+            FlatButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new SettingUI()),
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RichText(
+                        text: TextSpan(children: [
+                          WidgetSpan(
+                            child: Icon(Icons.settings, size: 20),
+                          ),
+                          TextSpan(
+                            text: "  Settings",
+                            style: TextStyle(color: Colors.black, fontSize: 18),
+                          ),
+                        ]))
+                  ],
+                )),
+            Divider(
+              height: 2.0,
+              color: Colors.grey,
+            ),
+          ],
+        ),
+      ),
       body: Center(
-        child: Column(
-          children: [
+          child: Column(children: [
             Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            //crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Text(
-                  '$_randomNum',
-                  style: Theme.of(context).textTheme.headline4,
+              mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  child: Text(
+                    '$_randomNum',
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .headline4,
+                  ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                  child: TextField(
-                    onChanged: (tmp){
-                      numList.clear();
-                    },
-                    scrollPadding: const EdgeInsets.symmetric(horizontal: 16),
-                    controller: _start,
-                    keyboardType: TextInputType.numberWithOptions(decimal: false, signed: false),
-                    decoration: InputDecoration(hintText: "開始數字"),
-                  ),
-                  ),
-                  Expanded(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
                       child: TextField(
-                        onChanged: (tmp){
+                        onChanged: (tmp) {
                           numList.clear();
                         },
-                        controller: _end,
-                        keyboardType: TextInputType.numberWithOptions(decimal: false, signed: false),
-                        decoration: InputDecoration(hintText: "結束數字"),
-                      )
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Text("是否排序"),
-                  Checkbox(value: _isSort, onChanged: (flag){
-                    _isSort = flag;
-                    setState(() {});
-                  }),
-                  Text("不重複"),
-                  Checkbox(value: _isUnique, onChanged: (flag){
-                    _isUnique = flag;
-                    setState(() {});
-                  }),
-                  Text("  "),
+                        scrollPadding: const EdgeInsets.symmetric(
+                            horizontal: 16),
+                        controller: _start,
+                        keyboardType: TextInputType.numberWithOptions(
+                            decimal: false, signed: false),
+                        decoration: InputDecoration(hintText: "開始數字"),
+                      ),
+                    ),
+                    Expanded(
+                        child: TextField(
+                          onChanged: (tmp) {
+                            numList.clear();
+                          },
+                          controller: _end,
+                          keyboardType: TextInputType.numberWithOptions(
+                              decimal: false, signed: false),
+                          decoration: InputDecoration(hintText: "結束數字"),
+                        )),
+                  ],
+                ),
+                Row(children: [
                   Padding(
-                      padding: EdgeInsets.all(16),
-                      child: Align(
+                    padding: EdgeInsets.all(16),
+                    child: Align(
                       alignment: Alignment.centerRight,
                       child: RaisedButton(
                         child: Text("抽籤 "),
-                        onPressed: (){
-                          int num=0;
-                          if(_checkNum()){
+                        onPressed: () {
+                          int num = 0;
+                          if (_checkNum()) {
                             num = _randomNumber();
                             numList.add(num); //存入陣列
 
@@ -209,30 +252,27 @@ class _MyHomePageState extends State<MyHomePage> {
                           //print(num);
                         },
                       ),
+                    ),
                   ),
-                  ),
-                ]
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 40, 0, 16),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    _getNumberList(),
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 26
+                ]),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 40, 0, 16),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      _getNumberList(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 26),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          ]
-        )
-      ),
+              ],
+            ),
+          ])),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {_resetApp();},
+        onPressed: () {
+          _resetApp();
+        },
         tooltip: 'Random',
         child: Icon(Icons.autorenew),
       ), // This trailing comma makes auto-formatting nicer for build methods.

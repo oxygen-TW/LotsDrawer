@@ -38,20 +38,13 @@ class HomePage extends StatefulWidget {
 class _MyHomePageState extends State<HomePage> {
   int _randomNum = 0;
   var randomNumList = <int>[];
+  String roundStr;
+  String allStr;
   TextEditingController _start = TextEditingController();
   TextEditingController _end = TextEditingController();
 
-  //RandomCore rdc = new RandomCore(int.parse(_start.text), end)
+  RandomCore rdc = new RandomCore(1, 10);
   Random random = new Random();
-
-  void _randomNumber() {
-    int s = int.parse(_start.text);
-    int e = int.parse(_end.text);
-    var rdc = RandomCore(s, e);
-
-    print("$s $e");
-    randomNumList = rdc.random();
-  }
 
   bool _checkNum() {
     if (_start.text == "" ||
@@ -86,6 +79,17 @@ class _MyHomePageState extends State<HomePage> {
       _start.text = tmp;
     }
 
+    if(!rdc.check()){
+      Fluttertoast.showToast(
+          msg: "All numbers have been selected!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      return false;
+    }
     return true;
   }
 
@@ -93,8 +97,10 @@ class _MyHomePageState extends State<HomePage> {
     randomNumList.clear();
     _start.text = "";
     _end.text = "";
+    _getNumberList(true);
+    rdc.reset();
     setState(() {
-      _randomNum = 0;
+      roundStr = "";
     });
     Fluttertoast.showToast(
         msg: "App has been reset.",
@@ -106,27 +112,12 @@ class _MyHomePageState extends State<HomePage> {
         fontSize: 16.0);
   }
 
-  String _getNumberList() {
-    String str = "已抽中：\n";
-    if (globals.requireSort) {
-      randomNumList.sort();
+  String _getNumberList(bool isclean) {
+    if(isclean){
+      return "";
     }
-
-    for (int i = 0; i < randomNumList.length; i++) {
-      str += randomNumList[i].toString() + ", ";
-    }
-    return str;
+    return rdc.getNumberString();
   }
-
-  String _getRoundList(){
-    String returnStr = "";
-    for (int i = 0; i < randomNumList.length - 1; i++) {
-      var num = randomNumList[i];
-      returnStr += "$num, ";
-    }
-    returnStr += randomNumList[randomNumList.length-1].toString();
-    return returnStr;
-    }
 
 
   @override
@@ -179,7 +170,7 @@ class _MyHomePageState extends State<HomePage> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
                   child: Text(
-                    '$_randomNum',
+                    '$roundStr',
                     style: Theme
                         .of(context)
                         .textTheme
@@ -193,6 +184,7 @@ class _MyHomePageState extends State<HomePage> {
                       child: TextField(
                         onChanged: (tmp) {
                           randomNumList.clear();
+                          rdc = new RandomCore(int.parse(_start.text), int.parse(_end.text));
                         },
                         scrollPadding: const EdgeInsets.symmetric(
                             horizontal: 16),
@@ -205,6 +197,7 @@ class _MyHomePageState extends State<HomePage> {
                     Expanded(
                         child: TextField(
                           onChanged: (tmp) {
+                            rdc = new RandomCore(int.parse(_start.text), int.parse(_end.text));
                             randomNumList.clear();
                           },
                           controller: _end,
@@ -224,7 +217,7 @@ class _MyHomePageState extends State<HomePage> {
                         onPressed: () {
                           int num = 0;
                           if (_checkNum()) {
-                            _randomNumber();
+                              roundStr = rdc.getRoundString();
                             setState(() {
                               _randomNum = num;
                             });
@@ -240,7 +233,7 @@ class _MyHomePageState extends State<HomePage> {
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      _getNumberList(),
+                      _getNumberList(false),
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 26),
                     ),

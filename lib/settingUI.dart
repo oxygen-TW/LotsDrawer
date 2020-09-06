@@ -155,7 +155,7 @@ class _SettingUIState extends State<SettingUI> {
                         padding:
                             const EdgeInsets.fromLTRB(12.0, 5.0, 12.0, 6.0),
                         child: Text(
-                          "單次抽籤數量",
+                          "單次抽籤數量(beta)",
                           style: TextStyle(
                               fontSize: 22.0, fontWeight: FontWeight.bold),
                         ),

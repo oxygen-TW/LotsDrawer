@@ -227,7 +227,7 @@ class _MyHomePageState extends State<HomePage> {
         onPressed: () {
           _resetApp();
         },
-        tooltip: 'Random',
+        tooltip: 'Reset',
         child: Icon(Icons.autorenew),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

@@ -9,10 +9,10 @@
 
 ## Contributor 團隊成員
 > 2位
-- [oxygen-TW](https://github.com/oxygen-TW)
+- 劉子豪 [oxygen-TW](https://github.com/oxygen-TW)
   - RandomCore.dart 開發
   - UI layout
-- [junyussh](https://github.com/junyussh)
+- 陳俊瑜 [junyussh](https://github.com/junyussh)
   - UI layout
 
 
@@ -57,11 +57,12 @@ RandomCore rdc = new RandomCore(1, 10);
 > 盡量不要外部呼叫
 
 實作隨機功能
----
 
+---
 
 ## ToDo
 
+- [ ] ReadMe.md
 - [ ] Home page 排版優化    
 - [ ] Home page 程式碼重構並使用 Random Core    
 - [X] 實作 RandomCore 功能    

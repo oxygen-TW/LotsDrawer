@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:LotsDrawer/RandomCore.dart';
+import 'RandomCore.dart';
 import 'globals.dart' as globals;
 
 class SettingUI extends StatefulWidget {
@@ -8,7 +10,7 @@ class SettingUI extends StatefulWidget {
 
 class _SettingUIState extends State<SettingUI> {
   TextEditingController _excludeNumber = TextEditingController();
-
+  String _excludeString = "";
   TextEditingController _excludeC = TextEditingController();
   TextEditingController _multiC = TextEditingController();
 
@@ -202,7 +204,9 @@ class _SettingUIState extends State<SettingUI> {
                   ),
                   FlatButton(
                       onPressed: () {
-                       globals.excludeList.add(int.parse(_excludeC.text));
+                        globals.excludeList.add(int.parse(_excludeC.text));
+                        _excludeC.text = "";
+                        _excludeString = RandomCore.getExcludeString();
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -210,7 +214,7 @@ class _SettingUIState extends State<SettingUI> {
                           RichText(
                               text: TextSpan(children: [
                             WidgetSpan(
-                              child: Icon(Icons.add_circle , size: 20),
+                              child: Icon(Icons.add_circle, size: 20),
                             ),
                           ]))
                         ],
@@ -242,13 +246,22 @@ class _SettingUIState extends State<SettingUI> {
                           RichText(
                               text: TextSpan(children: [
                             WidgetSpan(
-                              child: Icon(Icons.perm_data_setting , size: 20),
+                              child: Icon(Icons.perm_data_setting, size: 20),
                             ),
                           ]))
                         ],
                       )),
                 ],
-              )
+              ),
+              Divider(
+                height: 2.0,
+                color: Colors.grey,
+              ),
+              Text("$_excludeString",
+                  style: TextStyle(
+                    fontSize: 22.0,
+                    color: Colors.black,
+                  ))
             ],
           );
         },
@@ -264,7 +277,7 @@ class _SettingUIState extends State<SettingUI> {
           globals.multiNum = 1;
           setState(() {});
         },
-        tooltip: 'Random',
+        tooltip: 'Reset',
         child: Icon(Icons.autorenew),
       ),
     );

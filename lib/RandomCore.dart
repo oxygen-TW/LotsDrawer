@@ -77,15 +77,16 @@ class RandomCore {
     return returnStr;
   }
 
-  String getExcludeString() {
+  static String getExcludeString() {
     String returnStr = "排除：";
     if (globals.excludeList.isNotEmpty) {
+      print("getExcludeString");
       for (int i = 0; i < globals.excludeList.length - 1; i++) {
         returnStr += globals.excludeList[i].toString() + ", ";
       }
       returnStr += globals.excludeList.last.toString();
     }
-
+    print(returnStr);
     return returnStr;
   }
 

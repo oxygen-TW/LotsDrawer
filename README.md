@@ -1,6 +1,20 @@
 # LotsDrawer
 
-A new Flutter application.
+## 開發緣由
+因家人是老師，需要抽點學生，找不到市面上好用且沒有廣告的抽籤軟體，剛好在這次 DSC summer bootcamp 學會了很多新技術，便拿來運用親自打造一套好用的抽籤軟體。
+
+## 使用技術
+- [Flutter](https://flutter.dev/)
+- [Google Cloud Plateform](https://cloud.google.com/gcp)
+
+## Contributor 團隊成員
+> 2位
+- [oxygen-TW](https://github.com/oxygen-TW)
+  - RandomCore.dart 開發
+  - UI layout
+- [junyussh](https://github.com/junyussh)
+  - UI layout
+
 
 ## RandomCore.dart Usage
 ---
@@ -50,8 +64,8 @@ RandomCore rdc = new RandomCore(1, 10);
 
 - [ ] Home page 排版優化    
 - [ ] Home page 程式碼重構並使用 Random Core    
-- [ ] 實作 RandomCore 功能    
-- [ ] 測試 RandomCore 功能    
+- [X] 實作 RandomCore 功能    
+- [X] 測試 RandomCore 功能    
 - [ ] Home page 單元測試    
 - [ ] Settings page 單元測試    
 - [ ] 整合測試    

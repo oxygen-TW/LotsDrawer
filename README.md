@@ -14,13 +14,15 @@
   - UI layout
 - 陳俊瑜 [junyussh](https://github.com/junyussh)
   - UI layout
+  - UI optimization
 
 ## 操作截圖
-![Imgur](https://i.imgur.com/p90CcZ0.jpg "")    
-![Imgur](https://i.imgur.com/tCW0lCG.jpg)    
-![Imgur](https://i.imgur.com/MxxSJW8.jpg)
+<img src="https://i.imgur.com/p90CcZ0.jpg" width="50%" height="50%" />    
+<img src="https://i.imgur.com/tCW0lCG.jpg" width="50%" height="50%" />    
+<img src="https://i.imgur.com/MxxSJW8.jpg" width="50%" height="50%" />    
+
+
 ## RandomCore.dart Usage
----
 
 ### RandomCore(int start, int end)
 `Constructor `
@@ -65,9 +67,9 @@ RandomCore rdc = new RandomCore(1, 10);
 
 ## ToDo
 
-- [ ] README.md
+- [X] README.md
 - [ ] Home page 排版優化    
-- [ ] Home page 程式碼重構並使用 Random Core    
+- [X] Home page 程式碼重構並使用 Random Core    
 - [X] 實作 RandomCore 功能    
 - [X] 測試 RandomCore 功能    
 - [ ] Home page 單元測試    

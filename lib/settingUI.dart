@@ -9,8 +9,7 @@ class SettingUI extends StatefulWidget {
 }
 
 class _SettingUIState extends State<SettingUI> {
-  TextEditingController _excludeNumber = TextEditingController();
-  String _excludeString = "";
+  String _excludeString = "排除：";
   TextEditingController _excludeC = TextEditingController();
   TextEditingController _multiC = TextEditingController();
 
@@ -157,7 +156,7 @@ class _SettingUIState extends State<SettingUI> {
                         padding:
                             const EdgeInsets.fromLTRB(12.0, 5.0, 12.0, 6.0),
                         child: Text(
-                          "單次抽籤數量(beta)",
+                          "單次抽籤數量",
                           style: TextStyle(
                               fontSize: 22.0, fontWeight: FontWeight.bold),
                         ),
@@ -204,9 +203,13 @@ class _SettingUIState extends State<SettingUI> {
                   ),
                   FlatButton(
                       onPressed: () {
+                        if(_excludeC.text == ""){
+                          return;
+                        }
                         globals.excludeList.add(int.parse(_excludeC.text));
                         _excludeC.text = "";
                         _excludeString = RandomCore.getExcludeString();
+                        setState(() {});
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -237,6 +240,9 @@ class _SettingUIState extends State<SettingUI> {
                   ),
                   FlatButton(
                       onPressed: () {
+                        if(_multiC.text == ""){
+                          return;
+                        }
                         globals.multiNum = int.parse(_multiC.text);
                         print(globals.multiNum);
                       },
@@ -246,22 +252,24 @@ class _SettingUIState extends State<SettingUI> {
                           RichText(
                               text: TextSpan(children: [
                             WidgetSpan(
-                              child: Icon(Icons.perm_data_setting, size: 20),
+                              child: Icon(Icons.add_circle, size: 20),
                             ),
                           ]))
                         ],
                       )),
                 ],
               ),
-              Divider(
-                height: 2.0,
-                color: Colors.grey,
-              ),
-              Text("$_excludeString",
-                  style: TextStyle(
-                    fontSize: 22.0,
-                    color: Colors.black,
-                  ))
+              Row(
+                children: [
+                  Padding(
+                      padding: EdgeInsets.fromLTRB(16, 20, 16, 0),
+                      child: Text("$_excludeString",
+                          style: TextStyle(
+                            fontSize: 22.0,
+                            color: Colors.black,
+                          )))
+                ],
+              )
             ],
           );
         },
@@ -275,6 +283,7 @@ class _SettingUIState extends State<SettingUI> {
           globals.requireMultiple = false;
           globals.excludeList.clear();
           globals.multiNum = 1;
+          _excludeString = "排除：";
           setState(() {});
         },
         tooltip: 'Reset',

@@ -15,7 +15,10 @@
 - 陳俊瑜 [junyussh](https://github.com/junyussh)
   - UI layout
 
-
+## 操作截圖
+![Imgur](https://imgur.com/p90CcZ0)    
+![Imgur](https://imgur.com/tCW0lCG)    
+![Imgur](https://imgur.com/MxxSJW8)
 ## RandomCore.dart Usage
 ---
 
@@ -62,7 +65,7 @@ RandomCore rdc = new RandomCore(1, 10);
 
 ## ToDo
 
-- [ ] ReadMe.md
+- [ ] README.md
 - [ ] Home page 排版優化    
 - [ ] Home page 程式碼重構並使用 Random Core    
 - [X] 實作 RandomCore 功能    

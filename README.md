@@ -16,9 +16,9 @@
   - UI layout
 
 ## 操作截圖
-![Imgur](https://imgur.com/p90CcZ0)    
-![Imgur](https://imgur.com/tCW0lCG)    
-![Imgur](https://imgur.com/MxxSJW8)
+![Imgur](https://i.imgur.com/p90CcZ0.jpg "")    
+![Imgur](https://i.imgur.com/tCW0lCG.jpg)    
+![Imgur](https://i.imgur.com/MxxSJW8.jpg)
 ## RandomCore.dart Usage
 ---
 

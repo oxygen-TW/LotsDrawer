@@ -36,7 +36,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
-  int _randomNum = 0;
   var randomNumList = <int>[];
   String roundStr;
   String allStr;
@@ -201,7 +200,7 @@ class _MyHomePageState extends State<HomePage> {
                           if (_checkNum()) {
                               roundStr = rdc.getRoundString();
                             setState(() {
-                              _randomNum = num;
+                              //roundStr = rdc.getRoundString();
                             });
                           }
                           //print(num);

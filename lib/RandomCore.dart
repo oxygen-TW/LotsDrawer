@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'globals.dart' as globals;
 
 class RandomCore {
@@ -7,15 +6,13 @@ class RandomCore {
   var allNumberList = <int>[];
   int startNum = 0;
   int endNum = 0;
-  Random rd;
 
   //Constructor
   RandomCore(int start, int end) {
     this.startNum = start;
-    this.endNum = end + 1;
-    this.rd = new Random();
+    this.endNum = end;
     this.numList = new List<int>.generate(
-        (this.endNum - this.startNum), (i) => i + startNum);
+        (this.endNum - this.startNum + 1), (i) => i + startNum);
 
     //Do random
     listShuffle();
@@ -26,28 +23,28 @@ class RandomCore {
   }
 
   List<int> _random() {
-    var index = this.numList.length - 1;
+    //排除Exclude number
+    numList = numList.toSet().difference(globals.excludeList.toSet()).toList();
     var returnList = <int>[];
     int limit = 0;
 
+    print("length: " + this.numList.length.toString());
+    print("exclude: " + globals.excludeList.length.toString());
     if(this.numList.length < globals.multiNum){
       limit = this.numList.length;
+      print("min mode:" + limit.toString());
     }else{
       limit = globals.multiNum;
     }
 
-    for (int i = 0; i < limit; i++) {
+    for (int i = limit-1; i >= 0; i--) {
       print(this.numList[i]);
       //排除 Exclude
-      if(globals.excludeList.contains(this.numList[i])){
-        this.numList.removeAt(i);
-        i -= 1;//回復index
-        continue;
-      }
       returnList.add(this.numList[i]);
       allNumberList.add(this.numList[i]);
       this.numList.removeAt(i);
     }
+    print("after L:" + this.numList.toString());
     return returnList;
   }
 

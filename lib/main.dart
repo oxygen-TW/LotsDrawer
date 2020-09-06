@@ -127,39 +127,21 @@ class _MyHomePageState extends State<HomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
-      ),
-      drawer: new Drawer(
-        child: new ListView(
-          children: <Widget>[
-            FlatButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (context) => new SettingUI()),
-                  );
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    RichText(
-                        text: TextSpan(children: [
-                          WidgetSpan(
-                            child: Icon(Icons.settings, size: 20),
-                          ),
-                          TextSpan(
-                            text: "  Settings",
-                            style: TextStyle(color: Colors.black, fontSize: 18),
-                          ),
-                        ]))
-                  ],
-                )),
-            Divider(
-              height: 2.0,
-              color: Colors.grey,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.settings,
+              color: Colors.white,
             ),
-          ],
-        ),
+            tooltip: "設定",
+            onPressed: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(builder: (context) => new SettingUI()),
+              );
+            },
+          )
+        ],
       ),
       body: Center(
           child: Column(children: [

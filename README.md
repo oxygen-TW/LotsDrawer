@@ -2,18 +2,49 @@
 
 A new Flutter application.
 
-## Getting Started
+## RandomCore.dart Usage
+---
 
-This project is a starting point for a Flutter application.
+### RandomCore(int start, int end)
+`Constructor `
+傳入亂數起始值與結束值    
 
-A few resources to get you started if this is your first Flutter project:
+import:
+```dart
+import 'RandomCore.dart';
+```     
+    
+Example:
+```dart
+RandomCore rdc = new RandomCore(1, 10);
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### String getRoundString(void)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+取得單次亂數結果，以字串形式回傳
+
+### String getNumberString(void)
+
+取得已被抽中的數字字串
+
+### getExcludeString(void)
+
+取得被排除的數字字串
+
+### void reset(void)
+重設 RandomCore，**注意，此行為不會影響亂數起始值與結束值**，若要修改請重新宣告執行 constructor
+
+### void listShuffle(void)
+> 盡量不要外部呼叫
+
+進行隨機打亂
+
+### List<int> _random(void)
+> 盡量不要外部呼叫
+
+實作隨機功能
+---
+
 
 ## ToDo
 

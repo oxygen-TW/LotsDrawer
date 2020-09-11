@@ -38,7 +38,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
-  int _randomNum = 0;
   var randomNumList = <int>[];
   String roundStr;
   String allStr;
@@ -334,7 +333,7 @@ class _MyHomePageState extends State<HomePage> {
         onPressed: () {
           _resetApp();
         },
-        tooltip: 'Random',
+        tooltip: 'Reset',
         child: Icon(Icons.autorenew),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

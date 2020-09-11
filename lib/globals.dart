@@ -6,5 +6,4 @@ bool requireExclude = false;
 bool requireMultiple = false;
 
 var excludeList = <int>[];
-var numberList = <int>[];
 int multiNum = 1;

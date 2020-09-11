@@ -16,10 +16,13 @@
   - UI layout
   - UI optimization
 
+## Web PWA
+https://web.oxygentw.net/LotsDrawer/#/
+
 ## 操作截圖
 <img src="https://i.imgur.com/p90CcZ0.jpg" width="50%" height="50%" />    
-<img src="https://i.imgur.com/tCW0lCG.jpg" width="50%" height="50%" />    
-<img src="https://i.imgur.com/MxxSJW8.jpg" width="50%" height="50%" />    
+<img src="https://i.imgur.com/Sd82AXH.jpg" width="50%" height="50%" />    
+<img src="https://i.imgur.com/0qkrn9Q.jpg" width="50%" height="50%" />    
 
 
 ## RandomCore.dart Usage
@@ -68,10 +71,10 @@ RandomCore rdc = new RandomCore(1, 10);
 ## ToDo
 
 - [X] README.md
-- [ ] Home page 排版優化    
+- [X] Home page 排版優化    
 - [X] Home page 程式碼重構並使用 Random Core    
 - [X] 實作 RandomCore 功能    
 - [X] 測試 RandomCore 功能    
-- [ ] Home page 單元測試    
-- [ ] Settings page 單元測試    
-- [ ] 整合測試    
+- [X] Home page 單元測試    
+- [X] Settings page 單元測試    
+- [X] 整合測試    

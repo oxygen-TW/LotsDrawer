@@ -39,7 +39,7 @@ class HomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<HomePage> {
   var randomNumList = <int>[];
-  String roundStr;
+  String roundStr = "N/A";
   String allStr;
   TextEditingController _start = TextEditingController();
   TextEditingController _end = TextEditingController();
@@ -175,7 +175,7 @@ class _MyHomePageState extends State<HomePage> {
                 height: 100,
                 child: Center(
                   child: Text(
-                    _randomNum.toString(),
+                    roundStr ,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -314,9 +314,9 @@ class _MyHomePageState extends State<HomePage> {
                       padding: EdgeInsets.symmetric(horizontal: 30),
                       onPressed: () {
                         if (_checkNum()) {
-                          roundStr = rdc.getRoundString();
+                          //roundStr = rdc.getRoundString();
                           setState(() {
-                            _randomNum = int.tryParse(roundStr);
+                            roundStr = rdc.getRoundString();
                           });
                         }
                       },

@@ -1,5 +1,8 @@
 # LotsDrawer
 
+[![hackmd-github-sync-badge](https://hackmd.io/ftY2p9YOS4aR7es2d3pK_g/badge)](https://hackmd.io/ftY2p9YOS4aR7es2d3pK_g)
+
+
 ## 開發緣由
 因家人是老師，需要抽點學生，找不到市面上好用且沒有廣告的抽籤軟體，剛好在這次 DSC summer bootcamp 學會了很多新技術，便拿來運用親自打造一套好用的抽籤軟體。
 
@@ -64,28 +67,37 @@ https://web.oxygentw.net/LotsDrawer/#/
 
 ## BasicRandom.dart
 > inherit RandomCore
-- [ ] `BasicRandom(int start, int end)`
-- [ ] `List<int> getRoundNumbers()`
+- [X] `BasicRandom(int start, int end)`
+    - 初始化
+- [X] `List<int> getRoundNumbers()`
     - 取得單次抽籤數字 List
-- [ ] `List<int> getTotalNumbers()`
+- [X] `List<int> getTotalNumbers()`
     - 取得所有已抽中數字 List
-- [ ] `List<int> getExcludeNumbers()`
+- [X] `List<int> getExcludeNumbers()`
     - 取得目前被排除的數字 List
-- [ ] `String getRoundNumbersString()`
+- [X] `String getRoundNumbersString()`
     - 取得單次抽籤數字字串
-- [ ] `String getTotalNumbersString()`
+- [X] `String getTotalNumbersString()`
     - 取得所有已抽中數字字串
-- [ ] `String getExcludeNumbersString()`
+- [X] `String getExcludeNumbersString()`
     - 取得目前被排除的數字字串
-- [ ] `void dispose()`
+- [X] `void dispose()`
     - 刪除 class
 
 ## CatalogRandom.dart
 > inherit RandomCore
 
-- [ ] `CatalogRandom()`
-- [ ] `int addCatalog(String)`
-- [ ] `bool removeCatalog(int id)`
-- [ ] `String catalogRandom()`
-- [ ] `bool _checkSetting()`
-- [ ] `dispose()`
+- [X] `CatalogRandom()`
+- [X] `int addCatalog(String item)`
+    - 新增 item 至 catalog
+    - if item already exsit, throw exception `CatalogRandomItemExsit`
+- [X] `List<String> getCatalog()`
+    - 取得目前 catalog
+- [X] `bool removeCatalog(String item)`
+    - success return `true`, otherwise return `false`
+- [X] `String random()`
+    - if All catalogs have been selected, throw exception `CatalogRandomNoItem`
+- [X] `bool _isAllselected()`
+    - 是否已經抽完所有 item
+- [X] `dispose()`
+    - 刪除 class

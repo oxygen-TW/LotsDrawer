@@ -20,61 +20,72 @@
 https://web.oxygentw.net/LotsDrawer/#/
 
 ## 操作截圖
-<img src="https://i.imgur.com/p90CcZ0.jpg" width="50%" height="50%" />    
-<img src="https://i.imgur.com/Sd82AXH.jpg" width="50%" height="50%" />    
-<img src="https://i.imgur.com/0qkrn9Q.jpg" width="50%" height="50%" />    
+<img src="https://i.imgur.com/p90CcZ0.jpg" width="50%" height="50%" /> 
+
+<img src="https://i.imgur.com/Sd82AXH.jpg" width="50%" height="50%" />
+
+<img src="https://i.imgur.com/0qkrn9Q.jpg" width="50%" height="50%" />
 
 
-## RandomCore.dart Usage
+## Draw lots app Random API
 
-### RandomCore(int start, int end)
-`Constructor `
-傳入亂數起始值與結束值    
+引用
 
-import:
-```dart
-import 'RandomCore.dart';
-```     
-    
-Example:
-```dart
-RandomCore rdc = new RandomCore(1, 10);
-```
-
-### String getRoundString(void)
-
-取得單次亂數結果，以字串形式回傳
-
-### String getNumberString(void)
-
-取得已被抽中的數字字串
-
-### getExcludeString(void)
-
-取得被排除的數字字串
-
-### void reset(void)
-重設 RandomCore，**注意，此行為不會影響亂數起始值與結束值**，若要修改請重新宣告執行 constructor
-
-### void listShuffle(void)
-> 盡量不要外部呼叫
-
-進行隨機打亂
-
-### List<int> _random(void)
-> 盡量不要外部呼叫
-
-實作隨機功能
+命名規則
+- 以下底線開頭的函式設計為內部函式，請勿外部呼叫。
 
 ---
+## RandomCore.dart
+- [X] `RandomCore(int start, int end)`
+    - 初始化
+    - 設定亂數的上限與下限
+- [X] `void dispose()`
+    - delete class
+- [X] `setRange(int start, int end)`
+    - 設定亂數的上限與下限
+- [X] `void setExcludeNumbers(List<int>)`
+    - 直接指定所有排除數字
+- [X] `void addExcludeNumber(int)`
+    - 新增一個排除數字
+- [X] `void getExcludeNumbers(int)`
+    - 取得目前被排除的數字
+- [X] `void setMultiDraw(int)`
+    - 設定單次抽取數量
+- [X] `int getMultiDraw()`
+    - 取得目前單次抽取數量
+- [X] `void _shuffleList()`
+    - 重新排序
+- [X] `bool check()`
+    - 檢查上限與下限是否合法
+    - 檢查是否已經抽完所有數字
+- [X] `List<int> getRandomList()`
+    - 抽取數字 LotsDrawer
 
-## ToDo
 
-- [X] README.md
-- [X] Home page 排版優化    
-- [X] Home page 程式碼重構並使用 Random Core    
-- [X] 實作 RandomCore 功能    
-- [X] 測試 RandomCore 功能    
-- [X] Home page 單元測試    
-- [X] Settings page 單元測試    
-- [X] 整合測試    
+## BasicRandom.dart
+> inherit RandomCore
+- [ ] `BasicRandom(int start, int end)`
+- [ ] `List<int> getRoundNumbers()`
+    - 取得單次抽籤數字 List
+- [ ] `List<int> getTotalNumbers()`
+    - 取得所有已抽中數字 List
+- [ ] `List<int> getExcludeNumbers()`
+    - 取得目前被排除的數字 List
+- [ ] `String getRoundNumbersString()`
+    - 取得單次抽籤數字字串
+- [ ] `String getTotalNumbersString()`
+    - 取得所有已抽中數字字串
+- [ ] `String getExcludeNumbersString()`
+    - 取得目前被排除的數字字串
+- [ ] `void dispose()`
+    - 刪除 class
+
+## CatalogRandom.dart
+> inherit RandomCore
+
+- [ ] `CatalogRandom()`
+- [ ] `int addCatalog(String)`
+- [ ] `bool removeCatalog(int id)`
+- [ ] `String catalogRandom()`
+- [ ] `bool _checkSetting()`
+- [ ] `dispose()`

@@ -1,7 +1,8 @@
+import 'package:LotsDrawer/RandomLib/RandomLib.dart';
 import 'package:flutter/material.dart';
-import 'package:LotsDrawer/RandomCore.dart';
-import 'RandomCore.dart';
-import 'globals.dart' as globals;
+import 'file:///D:/Programming/Projects/LotsDrawer/lib/RandomLib/RandomCore.dart';
+import 'RandomLib/BasicRandom.dart' as rc;
+import 'RandomLib/globals.dart' as globals;
 
 class SettingUI extends StatefulWidget {
   @override
@@ -208,7 +209,7 @@ class _SettingUIState extends State<SettingUI> {
                         }
                         globals.excludeList.add(int.parse(_excludeC.text));
                         _excludeC.text = "";
-                        _excludeString = RandomCore.getExcludeString();
+                        //_excludeString = BasicRandom.getExcludeString();
                         setState(() {});
                       },
                       child: Row(

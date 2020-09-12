@@ -34,23 +34,23 @@ class RandomCore {
     var returnList = <int>[];
     int limit = 0;
 
-    print("length: " + this.numList.length.toString());
-    print("exclude: " + this.excludeList.length.toString());
+    //print("length: " + this.numList.length.toString());
+    //print("exclude: " + this.excludeList.length.toString());
     if(this.numList.length < this.multiDraw){
       limit = this.numList.length;
-      print("min mode:" + limit.toString());
+      //print("min mode:" + limit.toString());
     }else{
       limit = this.multiDraw;
     }
 
     for (int i = limit-1; i >= 0; i--) {
-      print(this.numList[i]);
+      //print(this.numList[i]);
       //排除 Exclude
       returnList.add(this.numList[i]);
       allNumberList.add(this.numList[i]);
       this.numList.removeAt(i);
     }
-    print("after L:" + this.numList.toString());
+    //print("after L:" + this.numList.toString());
     return returnList;
   }
 

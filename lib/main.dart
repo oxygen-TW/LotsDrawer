@@ -5,8 +5,8 @@ import 'package:flutter/services.dart';
 import 'dart:math';
 import 'package:fluttertoast/fluttertoast.dart';
 import "settingUI.dart";
-import 'RandomCore.dart';
-import 'globals.dart' as globals;
+import 'RandomLib/BasicRandom.dart';
+import 'RandomLib/globals.dart' as globals;
 
 void main() => runApp(AppMainUI());
 
@@ -45,7 +45,8 @@ class _MyHomePageState extends State<HomePage> {
   TextEditingController _start = TextEditingController();
   TextEditingController _end = TextEditingController();
 
-  RandomCore rdc = new RandomCore(1, 10);
+  BasicRandom rdc = new BasicRandom(1, 10);
+
   Random random = new Random();
 
   bool _checkNum() {
@@ -100,7 +101,7 @@ class _MyHomePageState extends State<HomePage> {
     _start.text = "";
     _end.text = "";
     _getNumberList(true);
-    rdc.reset();
+    rdc.dispose();
     setState(() {
       roundStr = "N/A";
     });
@@ -118,7 +119,7 @@ class _MyHomePageState extends State<HomePage> {
     if (isclean) {
       return "";
     }
-    return rdc.getNumberString();
+    return rdc.getTotalNumbersString();
   }
 
   @override
@@ -264,7 +265,7 @@ class _MyHomePageState extends State<HomePage> {
                                 controller: _start,
                                 onChanged: (tmp) {
                                   randomNumList.clear();
-                                  rdc = new RandomCore(int.parse(_start.text),
+                                  rdc = new BasicRandom(int.parse(_start.text),
                                       int.parse(_end.text));
                                 },
                                 decoration: InputDecoration(
@@ -299,7 +300,7 @@ class _MyHomePageState extends State<HomePage> {
                               padding: EdgeInsets.symmetric(horizontal: 10),
                               child: TextField(
                                 onChanged: (tmp) {
-                                  rdc = new RandomCore(int.parse(_start.text),
+                                  rdc = new BasicRandom(int.parse(_start.text),
                                       int.parse(_end.text));
                                   randomNumList.clear();
                                 },
@@ -363,7 +364,7 @@ class _MyHomePageState extends State<HomePage> {
                         if (_checkNum()) {
                           //roundStr = rdc.getRoundString();
                           setState(() {
-                            roundStr = rdc.getRoundString();
+                            roundStr = rdc.getRoundNumbersString();
                           });
                         }
                       },

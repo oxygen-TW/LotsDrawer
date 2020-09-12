@@ -1,3 +1,4 @@
+import 'package:LotsDrawer/historyPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -16,7 +17,7 @@ class AppMainUI extends StatelessWidget {
     return MaterialApp(
       title: 'Draw lots App',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        // primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: <String, WidgetBuilder>{
@@ -101,7 +102,7 @@ class _MyHomePageState extends State<HomePage> {
     _getNumberList(true);
     rdc.reset();
     setState(() {
-      roundStr = "";
+      roundStr = "N/A";
     });
     Fluttertoast.showToast(
         msg: "App has been reset.",
@@ -136,6 +137,52 @@ class _MyHomePageState extends State<HomePage> {
         centerTitle: true,
         elevation: 0.0,
         actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.autorenew,
+              color: Colors.red[400],
+            ),
+            tooltip: "Reset",
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return AlertDialog(
+                    title: Text('Are you sure to reset the APP?'),
+                    content: Text('History will clear.'),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text('No'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      FlatButton(
+                        child: Text('Yes'),
+                        onPressed: () {
+                          _resetApp();
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.history,
+              color: Colors.black87,
+            ),
+            tooltip: "抽取記錄",
+            onPressed: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(builder: (context) => new HistoryPage()),
+              );
+            },
+          ),
           IconButton(
             icon: Icon(
               Icons.settings,
@@ -175,7 +222,7 @@ class _MyHomePageState extends State<HomePage> {
                 height: 100,
                 child: Center(
                   child: Text(
-                    roundStr ,
+                    roundStr,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -329,13 +376,6 @@ class _MyHomePageState extends State<HomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _resetApp();
-        },
-        tooltip: 'Reset',
-        child: Icon(Icons.autorenew),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

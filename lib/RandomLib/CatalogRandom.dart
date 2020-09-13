@@ -1,22 +1,16 @@
 import 'package:LotsDrawer/RandomLib/RandomCore.dart';
-
-class CatalogRandomItemExist implements Exception {
-  String errMsg() => 'Item is already exsit in catalog.';
-}
-
-class CatalogRandomNoItem implements Exception {
-  String errMsg() => 'No item in the catalog.';
-}
+import 'RL_Exceptions.dart';
 
 class CatalogRandom extends RandomCore {
   var catalog = <String>[];
   var randomCatalog = <String>[];
+  bool _isUnique = true;
 
   CatalogRandom() : super(1, 2);
 
   int addCatalog(String newItem) {
     if (this.catalog.contains(newItem)) {
-      throw new CatalogRandomItemExist();
+      throw new RandomItemExist();
     }
 
     int tmpId = this.catalog.length;
@@ -40,6 +34,10 @@ class CatalogRandom extends RandomCore {
     return this.catalog;
   }
 
+  void requireUnique(bool flag) {
+    this._isUnique = flag;
+  }
+
   bool _isAllselected() {
     return this.randomCatalog.isEmpty;
   }
@@ -49,11 +47,15 @@ class CatalogRandom extends RandomCore {
       throw new CatalogRandomNoItem();
     }
 
-    RandomCore rdc = new RandomCore(0, catalog.length - 1);
+    RandomCore rdc = new RandomCore(0, randomCatalog.length - 1);
     int randomNum = rdc.getRandomList()[0];
 
     var returnStr = this.randomCatalog[randomNum];
-    this.randomCatalog.removeAt(randomNum);
+
+    if(this._isUnique){
+      this.randomCatalog.removeAt(randomNum);
+    }
+    
     return returnStr;
   }
 

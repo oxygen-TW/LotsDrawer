@@ -1,3 +1,4 @@
+import 'RL_Exceptions.dart';
 
 class RandomCore {
   //class variables
@@ -19,7 +20,11 @@ class RandomCore {
     this._shuffleList();
   }
 
-  void setRange(int start, int end){
+  void setRange(int start, int end) {
+    if (start <= end) {
+      throw new RandomCoreValueInvalid();
+    }
+
     this.startNum = start;
     this.endNum = end;
   }
@@ -36,14 +41,14 @@ class RandomCore {
 
     //print("length: " + this.numList.length.toString());
     //print("exclude: " + this.excludeList.length.toString());
-    if(this.numList.length < this.multiDraw){
+    if (this.numList.length < this.multiDraw) {
       limit = this.numList.length;
       //print("min mode:" + limit.toString());
-    }else{
+    } else {
       limit = this.multiDraw;
     }
 
-    for (int i = limit-1; i >= 0; i--) {
+    for (int i = limit - 1; i >= 0; i--) {
       //print(this.numList[i]);
       //排除 Exclude
       returnList.add(this.numList[i]);
@@ -54,28 +59,36 @@ class RandomCore {
     return returnList;
   }
 
-  void setExcludeNumbers(List<int> newExcludeList){
+  void setExcludeNumbers(List<int> newExcludeList) {
     this.excludeList = newExcludeList;
   }
 
-  void addExcludeNumber(int newExcludeNumber){
+  void addExcludeNumber(int newExcludeNumber) {
+    if (this.excludeList.contains(newExcludeNumber)) {
+      throw new RandomItemExist();
+    }
+    
     this.excludeList.add(newExcludeNumber);
   }
 
-  List<int> getExcludeNumbers(){
+  void removeExcludeNumber(int exExcludeNumber) {
+    this.excludeList.remove(exExcludeNumber);
+  }
+
+  List<int> getExcludeNumbers() {
     return this.excludeList;
   }
 
-  void setMultiDraw(int newMultiDrawNumber){
+  void setMultiDraw(int newMultiDrawNumber) {
     this.multiDraw = newMultiDrawNumber;
   }
 
-  int getMultiDraw(){
+  int getMultiDraw() {
     return this.multiDraw;
   }
 
   bool check() {
-    if(this.startNum >= this.endNum){
+    if (this.startNum >= this.endNum) {
       return false;
     }
 
@@ -85,7 +98,7 @@ class RandomCore {
     return true;
   }
 
-  void dispose()  {
+  void dispose() {
     this.allNumberList.clear();
     this.numList.clear();
     this.excludeList.clear();

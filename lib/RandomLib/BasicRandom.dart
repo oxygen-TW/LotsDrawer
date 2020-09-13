@@ -11,11 +11,11 @@ class BasicRandom extends RandomCore {
   List<int> getRoundNumbers() {
     var randomList = getRandomList();
     this.totalNumbersList.addAll(randomList);
-    return randomList;
-  }
 
-  List<int> getTotalNumbers() {
-    return this.totalNumbersList;
+    if (globals.requireSort) {
+      randomList.sort();
+    }
+    return randomList;
   }
 
   String getRoundNumbersString() {
@@ -29,6 +29,14 @@ class BasicRandom extends RandomCore {
     }
     returnStr += tmpList.last.toString();
     return returnStr;
+  }
+
+  List<int> getTotalNumbers() {
+    if (globals.requireSort) {
+      this.totalNumbersList.sort();
+    }
+
+    return this.totalNumbersList;
   }
 
   String getTotalNumbersString() {
@@ -50,13 +58,13 @@ class BasicRandom extends RandomCore {
     String returnStr = "";
 
     if (excludeList.isNotEmpty) {
-      print("getExcludeString");
+      //print("getExcludeString");
       for (int i = 0; i < excludeList.length - 1; i++) {
         returnStr += excludeList[i].toString() + ", ";
       }
       returnStr += excludeList.last.toString();
     }
-    print(returnStr);
+    //print(returnStr);
     return returnStr;
   }
 

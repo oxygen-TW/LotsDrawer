@@ -1,6 +1,6 @@
 import 'package:LotsDrawer/RandomLib/RandomCore.dart';
 
-class CatalogRandomItemExsit implements Exception {
+class CatalogRandomItemExist implements Exception {
   String errMsg() => 'Item is already exsit in catalog.';
 }
 
@@ -16,7 +16,7 @@ class CatalogRandom extends RandomCore {
 
   int addCatalog(String newItem) {
     if (this.catalog.contains(newItem)) {
-      throw new CatalogRandomItemExsit();
+      throw new CatalogRandomItemExist();
     }
 
     int tmpId = this.catalog.length;

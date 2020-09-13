@@ -1,3 +1,4 @@
+import 'package:LotsDrawer/CatalogRandomUI.dart';
 import 'package:LotsDrawer/historyPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -138,6 +139,19 @@ class _MyHomePageState extends State<HomePage> {
         centerTitle: true,
         elevation: 0.0,
         actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.android_sharp,
+              color: Colors.black87,
+            ),
+            tooltip: "TEST PAGE",
+            onPressed: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(builder: (context) => new CatalogRandomUI()),
+              );
+            },
+          ),
           IconButton(
             icon: Icon(
               Icons.autorenew,

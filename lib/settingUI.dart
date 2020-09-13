@@ -1,10 +1,12 @@
-import 'package:LotsDrawer/RandomLib/RandomLib.dart';
+// import 'RandomLib/RandomLib.dart';
 import 'package:flutter/material.dart';
-import 'file:///D:/Programming/Projects/LotsDrawer/lib/RandomLib/RandomCore.dart';
+import 'RandomLib/RandomCore.dart';
 import 'RandomLib/BasicRandom.dart' as rc;
 import 'RandomLib/globals.dart' as globals;
 
 class SettingUI extends StatefulWidget {
+  SettingUI(this.start, this.end);
+  final int start, end;
   @override
   _SettingUIState createState() => _SettingUIState();
 }
@@ -16,6 +18,7 @@ class _SettingUIState extends State<SettingUI> {
 
   @override
   Widget build(BuildContext context) {
+    RandomCore randomCore = new RandomCore(widget.start, widget.end);
     return Scaffold(
       appBar: AppBar(
         title: Text("Settings"),
@@ -207,7 +210,7 @@ class _SettingUIState extends State<SettingUI> {
                         if(_excludeC.text == ""){
                           return;
                         }
-                        globals.excludeList.add(int.parse(_excludeC.text));
+                        randomCore.excludeList.add(int.parse(_excludeC.text));
                         _excludeC.text = "";
                         //_excludeString = BasicRandom.getExcludeString();
                         setState(() {});
@@ -244,8 +247,8 @@ class _SettingUIState extends State<SettingUI> {
                         if(_multiC.text == ""){
                           return;
                         }
-                        globals.multiNum = int.parse(_multiC.text);
-                        print(globals.multiNum);
+                        randomCore.setMultiDraw(int.parse(_multiC.text));
+                        print(randomCore.getMultiDraw());
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -282,8 +285,8 @@ class _SettingUIState extends State<SettingUI> {
           globals.requireUnique = true;
           globals.requireExclude = false;
           globals.requireMultiple = false;
-          globals.excludeList.clear();
-          globals.multiNum = 1;
+          randomCore.excludeList.clear();
+          randomCore.setMultiDraw(1);
           _excludeString = "排除：";
           setState(() {});
         },

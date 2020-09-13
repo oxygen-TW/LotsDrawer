@@ -193,7 +193,9 @@ class _MyHomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                new MaterialPageRoute(builder: (context) => new SettingUI()),
+                new MaterialPageRoute(
+                    builder: (context) => new SettingUI(
+                        int.tryParse(_start.text), int.tryParse(_end.text))),
               );
             },
           )

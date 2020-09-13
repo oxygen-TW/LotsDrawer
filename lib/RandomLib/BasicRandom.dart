@@ -1,4 +1,3 @@
-import 'globals.dart' as globals;
 import 'RandomCore.dart';
 
 class BasicRandom extends RandomCore {

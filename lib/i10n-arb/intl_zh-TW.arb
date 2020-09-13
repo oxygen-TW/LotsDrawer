@@ -1,0 +1,8 @@
+{
+  "@@locale": "zh-TW",
+  "title": "抽籤小幫手",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

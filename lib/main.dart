@@ -1,4 +1,4 @@
-import 'package:LotsDrawer/CatalogRandomUI.dart';
+import 'package:LotsDrawer/catalogPage.dart';
 import 'package:LotsDrawer/historyPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

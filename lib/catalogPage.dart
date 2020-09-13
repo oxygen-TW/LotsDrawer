@@ -38,6 +38,7 @@ class _CatalogRandomUIState extends State<CatalogRandomUI> {
                     }
 
                     _catalogList = _catalogRandom.getCatalog();
+                    _catalogC.text = "";
                     setState(() {});
                   },
                   child: Text("添加")),

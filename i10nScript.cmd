@@ -1,0 +1,1 @@
+flutter pub run intl_translation:generate_from_arb --output-dir=lib/i10n --no-use-deferred-loading lib/main.dart lib/i10n-arb/intl_en-US.arb lib/i10n-arb/intl_zh-TW.arb

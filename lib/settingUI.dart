@@ -1,6 +1,4 @@
-import 'package:LotsDrawer/RandomLib/RandomLib.dart';
 import 'package:flutter/material.dart';
-import 'file:///D:/Programming/Projects/LotsDrawer/lib/RandomLib/RandomCore.dart';
 import 'RandomLib/BasicRandom.dart' as rc;
 import 'RandomLib/globals.dart' as globals;
 

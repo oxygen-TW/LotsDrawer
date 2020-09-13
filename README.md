@@ -88,6 +88,7 @@ https://web.oxygentw.net/LotsDrawer/#/
 > inherit RandomCore
 
 - [X] `CatalogRandom()`
+    - 初始化
 - [X] `int addCatalog(String item)`
     - 新增 item 至 catalog
     - if item already exsit, throw exception `CatalogRandomItemExsit`
@@ -97,6 +98,8 @@ https://web.oxygentw.net/LotsDrawer/#/
     - success return `true`, otherwise return `false`
 - [X] `String random()`
     - if All catalogs have been selected, throw exception `CatalogRandomNoItem`
+- [X] `void requireUnique(bool)`
+    - 設定不可重複
 - [X] `bool _isAllselected()`
     - 是否已經抽完所有 item
 - [X] `dispose()`

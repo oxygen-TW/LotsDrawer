@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'RandomLib/CatalogRandom.dart';
+import 'RandomLib/RL_Exceptions.dart';
 
 class CatalogRandomUI extends StatefulWidget {
   @override
@@ -32,8 +33,8 @@ class _CatalogRandomUIState extends State<CatalogRandomUI> {
                   onPressed: () {
                     try {
                       _catalogRandom.addCatalog(_catalogC.text);
-                    } on CatalogRandomItemExist {
-                      print("CatalogRandomItemExist");
+                    } on RandomItemExist {
+                      print("RandomItemExist");
                     }
 
                     _catalogList = _catalogRandom.getCatalog();

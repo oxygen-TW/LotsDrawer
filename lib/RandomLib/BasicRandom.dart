@@ -12,9 +12,9 @@ class BasicRandom extends RandomCore {
     var randomList = getRandomList();
     this.totalNumbersList.addAll(randomList);
 
-    if (globals.requireSort) {
-      randomList.sort();
-    }
+    // if (globals.requireSort) {
+    //   randomList.sort();
+    // }
     return randomList;
   }
 
@@ -22,9 +22,9 @@ class BasicRandom extends RandomCore {
     List<int> tmpList = getRandomList();
     this.totalNumbersList.addAll(tmpList);
 
-    if (globals.requireSort) {
-      tmpList.sort();
-    }
+    // if (globals.requireSort) {
+    //   tmpList.sort();
+    // }
     String returnStr = "";
     for (int i = 0; i < tmpList.length-1; i++) {
       returnStr += tmpList[i].toString() + ", ";
@@ -34,17 +34,17 @@ class BasicRandom extends RandomCore {
   }
 
   List<int> getTotalNumbers() {
-    if (globals.requireSort) {
-      this.totalNumbersList.sort();
-    }
+    // if (globals.requireSort) {
+    //   this.totalNumbersList.sort();
+    // }
 
     return this.totalNumbersList;
   }
 
   String getTotalNumbersString() {
-    if (globals.requireSort) {
-      this.allNumberList.sort();
-    }
+    // if (globals.requireSort) {
+    //   this.allNumberList.sort();
+    // }
 
     String returnStr = "";
     if (allNumberList.isNotEmpty) {

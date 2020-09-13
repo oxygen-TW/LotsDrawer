@@ -20,11 +20,13 @@ class BasicRandom extends RandomCore {
 
   String getRoundNumbersString() {
     List<int> tmpList = getRandomList();
+    this.totalNumbersList.addAll(tmpList);
+
     if (globals.requireSort) {
       tmpList.sort();
     }
     String returnStr = "";
-    for (int i = 0; i < tmpList.length - 1; i++) {
+    for (int i = 0; i < tmpList.length-1; i++) {
       returnStr += tmpList[i].toString() + ", ";
     }
     returnStr += tmpList.last.toString();

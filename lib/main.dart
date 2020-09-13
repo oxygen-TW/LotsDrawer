@@ -194,7 +194,7 @@ class _MyHomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
                 context,
-                new MaterialPageRoute(builder: (context) => new HistoryPage()),
+                new MaterialPageRoute(builder: (context) => new HistoryPage(basicRandom: rdc,)),
               );
             },
           ),

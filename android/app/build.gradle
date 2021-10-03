@@ -47,6 +47,9 @@ android {
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+        // Enabling multidex support.
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -75,4 +78,5 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'android.arch.lifecycle:common-java8:1.1.1'
 }

@@ -2,8 +2,7 @@ import 'package:LotsDrawer/catalogPage.dart';
 import 'package:LotsDrawer/historyPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-import 'dart:math';
+import 'package:flutter/services.dart' show FilteringTextInputFormatter, TextInputFormatter, TextInputType;
 import 'package:fluttertoast/fluttertoast.dart';
 import "settingUI.dart";
 import 'RandomLib/BasicRandom.dart';
@@ -47,8 +46,6 @@ class _MyHomePageState extends State<HomePage> {
   TextEditingController _end = TextEditingController();
 
   BasicRandom rdc = new BasicRandom(1, 10);
-
-  Random random = new Random();
 
   bool _checkNum() {
     if (_start.text == "" ||

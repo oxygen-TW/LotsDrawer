@@ -15,7 +15,8 @@ class CatalogRandom extends RandomCore {
 
     int tmpId = this.catalog.length;
     this.catalog.add(newItem);
-    this.randomCatalog = this.catalog; //複製List
+    this.randomCatalog.clear();
+    this.randomCatalog = []..addAll(this.catalog); //複製List)
     return tmpId;
   }
 
@@ -52,10 +53,10 @@ class CatalogRandom extends RandomCore {
 
     var returnStr = this.randomCatalog[randomNum];
 
-    if(this._isUnique){
+    if (this._isUnique) {
       this.randomCatalog.removeAt(randomNum);
     }
-    
+
     return returnStr;
   }
 
